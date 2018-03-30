@@ -1,0 +1,15 @@
+version: '2'
+services:
+  simplsite:
+    container_name: simplsite
+    build: .
+    ports:
+      - '5000:5000'
+    links:
+      - simpldb
+    command: ["./wait-for-postgres.sh", "./docker-entrypoint.sh"]
+
+  simpldb:
+    image: postgres
+    ports:
+      - '5432:5432'
